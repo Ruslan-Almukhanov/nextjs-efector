@@ -22,7 +22,7 @@ export class UserService {
   static postUser = async (payload: IUser) => {
     return this.request(axiosInstance.post("users", payload));
   };
-  static deleteUserById = async (url: string) => {
-    return this.request(axiosInstance.delete(url));
+  static deleteUserById = async (id: number) => {
+    return this.request(axiosInstance.delete(`users/${id}`));
   };
 }

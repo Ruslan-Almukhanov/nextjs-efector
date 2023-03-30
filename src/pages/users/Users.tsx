@@ -1,5 +1,5 @@
 import AddUserForm from "@/pages/users/components/AddUserForm/AddUserForm";
-import { addUser } from "@/pages/users/model/store";
+import { addUser, deleteUser } from "@/pages/users/model/store";
 import { IUser } from "@/pages/users/model/types";
 import { Button, Card, Modal } from "antd";
 import Meta from "antd/lib/card/Meta";
@@ -30,6 +30,12 @@ const Users = () => {
     setIsModalOpen(false);
   };
 
+  const handleDelete = (event: Event, id: number) => {
+    event.preventDefault();
+    event.stopPropagation();
+    deleteUser(id);
+  };
+
   useEffect(() => {
     pageMounted();
   }, [pageMounted]);
@@ -49,6 +55,14 @@ const Users = () => {
                     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                   />
                 }
+                extra={
+                  <Button
+                    onClick={(event: any) => handleDelete(event, user.id)}
+                    danger
+                  >
+                    Delete
+                  </Button>
+                }
               >
                 <Meta
                   title="Europe Street beat"
@@ -59,13 +73,11 @@ const Users = () => {
           </li>
         ))}
       </ul>
-
       <div className={styles["add-user"]}>
         <Button type="primary" size="large" onClick={showModal}>
           Add User
         </Button>
       </div>
-
       <Modal
         title="Add new User"
         open={isModalOpen}
