@@ -1,0 +1,12 @@
+.users {
+  width: 800px;
+  ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  li {
+    padding: 10px;
+  }
+}
