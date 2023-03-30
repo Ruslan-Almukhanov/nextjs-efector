@@ -1,17 +1,38 @@
-import Card from "antd/es/card/Card";
-import Meta from "antd/es/card/Meta";
-import { useEvent, useStore } from "effector-react";
+import AddUserForm from "@/pages/users/components/AddUserForm/AddUserForm";
+import { addUser } from "@/pages/users/model/store";
+import { IUser } from "@/pages/users/model/types";
+import { Button, Card, Modal } from "antd";
+import Meta from "antd/lib/card/Meta";
+import { useForm } from "antd/lib/form/Form";
+import { useEvent, useStore, useUnit } from "effector-react";
 import Link from "next/link";
-import { useEffect } from "react";
-import { $users, pageOpened } from "./model/store";
+import { useEffect, useState } from "react";
+import { $users, pageOpened, postNewUserFx } from "./model/store";
 import styles from "./Users.module.scss";
+
 const Users = () => {
   const users = useStore($users);
   const pageMounted = useEvent(pageOpened);
+  const isLoading = useUnit(postNewUserFx.pending);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [addUserForm] = useForm();
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = (data: IUser) => {
+    addUser(data);
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     pageMounted();
   }, [pageMounted]);
-  console.log(users);
 
   return (
     <div className={styles.users}>
@@ -38,6 +59,22 @@ const Users = () => {
           </li>
         ))}
       </ul>
+
+      <div className={styles["add-user"]}>
+        <Button type="primary" size="large" onClick={showModal}>
+          Add User
+        </Button>
+      </div>
+
+      <Modal
+        title="Add new User"
+        open={isModalOpen}
+        onOk={addUserForm.submit}
+        onCancel={handleCancel}
+        confirmLoading={isLoading}
+      >
+        <AddUserForm form={addUserForm} onFinish={handleOk} />
+      </Modal>
     </div>
   );
 };

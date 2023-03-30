@@ -1,5 +1,8 @@
 .users {
-  width: 800px;
+  max-width: 1200px;
+  display: flex;
+  margin-inline: auto;
+
   ul {
     display: flex;
     align-items: center;
@@ -9,4 +12,8 @@
   li {
     padding: 10px;
   }
+}
+
+.add-user {
+  padding: 1rem;
 }

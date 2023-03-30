@@ -16,8 +16,8 @@ export class UserService {
   static getUsers = async () => {
     return this.request(axiosInstance.get("users"));
   };
-  static getUserById = async (url: string) => {
-    return this.request(axiosInstance.get(url));
+  static getUserById = async (id: number) => {
+    return this.request(axiosInstance.get(`users/${id}`));
   };
   static postUser = async (payload: IUser) => {
     return this.request(axiosInstance.post("users", payload));
