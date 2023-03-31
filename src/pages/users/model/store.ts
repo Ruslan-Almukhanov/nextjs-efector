@@ -51,9 +51,6 @@ sample({
 sample({
   clock: postNewUserFx.doneData,
   // source: $users,
-  // fn: (state: IUser[], newUser: IUser) => {
-  //   return [...state, newUser];
-  // },
   target: getUsersFx,
 });
 
