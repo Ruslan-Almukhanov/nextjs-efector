@@ -6,8 +6,7 @@ export class UserService {
     try {
       const res = await promise;
       console.log(res);
-
-      return res.data.items;
+      return res.data.items ? res.data.items : res.data;
     } catch (error) {
       console.log(error);
       throw new Error();
