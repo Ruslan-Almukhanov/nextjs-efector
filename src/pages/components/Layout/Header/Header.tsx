@@ -20,7 +20,7 @@ const Header = () => {
           </li>
 
           <li>
-            <Link href="/auth/redirect">Log In</Link>
+            <Link href="/auth/login">Log In</Link>
           </li>
         </ul>
       </nav>
