@@ -7,7 +7,14 @@ const UserCard = ({ user }: { user: IUser }) => {
 };
 
 export async function getServerSideProps(context: NextPageContext) {
-  const { id } = context.query;
+  let { id } = context.query;
+
+  if (!id) return {};
+
+  if (Array.isArray(id)) {
+    id = id[0];
+  }
+
   const user = await UserService.getUserById(id);
 
   return {
