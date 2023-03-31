@@ -29,7 +29,10 @@ const LoginPage = () => {
     <div>
       {authProviders.length ? (
         authProviders.map((authProvider: AuthProviderInfo) => (
-          <li key={authProvider.state} onClick={() => handleProviderClick}>
+          <li
+            key={authProvider.state}
+            onClick={() => handleProviderClick(authProvider)}
+          >
             <Link href={authProvider.authUrl + redirectUrl}>
               {authProvider.name}
             </Link>
