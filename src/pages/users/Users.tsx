@@ -64,10 +64,7 @@ const Users = () => {
                   </Button>
                 }
               >
-                <Meta
-                  title="Europe Street beat"
-                  description="www.instagram.com"
-                />
+                <Meta title={user.name} description={user.phone} />
               </Card>
             </Link>
           </li>
