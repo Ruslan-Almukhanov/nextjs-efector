@@ -18,6 +18,10 @@ const Header = () => {
           <li>
             <Link href="/todos">Todos</Link>
           </li>
+
+          <li>
+            <Link href="/auth/redirect">Log In</Link>
+          </li>
         </ul>
       </nav>
     </div>
