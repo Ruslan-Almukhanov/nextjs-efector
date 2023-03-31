@@ -3,7 +3,7 @@ import PocketBase, { AuthProviderInfo } from "pocketbase";
 import { useEffect, useState } from "react";
 
 const pb = new PocketBase("http://127.0.0.1:8090");
-const redirectUrl = "http://localhost:3000/redirect";
+const redirectUrl = "http://localhost:3000/auth/redirect";
 
 const LoginPage = () => {
   const [authProviders, setAuthProviders] = useState<AuthProviderInfo[]>([]);
