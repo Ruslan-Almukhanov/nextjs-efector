@@ -8,20 +8,19 @@ const redirectUrl = "http://localhost:3000/auth/redirect";
 const LoginPage = () => {
   const [authProviders, setAuthProviders] = useState<AuthProviderInfo[]>([]);
 
-  async function loadLinks() {
-    const authMethods = await pb
-      .collection("users")
-      .listAuthMethods({ $autoCancel: false });
-
-    setAuthProviders(authMethods.authProviders);
-  }
-
   function handleProviderClick(provider: AuthProviderInfo) {
     localStorage.setItem("provider", JSON.stringify(provider));
-    console.log("handleProviderClick", authProviders);
   }
 
   useEffect(() => {
+    async function loadLinks() {
+      const authMethods = await pb
+        .collection("users")
+        .listAuthMethods({ $autoCancel: false });
+
+      setAuthProviders(authMethods.authProviders);
+    }
+
     loadLinks();
   }, []);
 
